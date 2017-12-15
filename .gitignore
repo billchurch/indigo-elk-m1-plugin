@@ -3,6 +3,12 @@ logs
 *.log
 npm-debug.log*
 
+# python files
+.pyc
+
+# Build
+Build
+
 # Editor preference files
 *.sublime-*
 
