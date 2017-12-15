@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<Actions>
+	<Action id="on" deviceFilter="self">
+		<Name>Turn On</Name>
+		<CallbackMethod>turnOn</CallbackMethod>
+		<ConfigUI>
+			<Field id="desc" type="testfield" hidden="true">
+				<Label>runtime calculated</Label>
+			</Field>
+		</ConfigUI>
+	</Action>
+	<Action id="off" deviceFilter="self">
+		<Name>Turn Off</Name>
+		<CallbackMethod>turnOff</CallbackMethod>
+		<ConfigUI>
+			<Field id="desc" type="testfield" hidden="true">
+				<Label>runtime calculated</Label>
+			</Field>
+		</ConfigUI>
+	</Action>
+</Actions>

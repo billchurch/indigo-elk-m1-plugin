@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<Devices>
+	<Device type="custom" id="alarmPanel">
+		<Name>Alarm Panel</Name>
+		<ConfigUI>
+			<Field id="panelLabel" type="label">
+				<Label>This is the main device for the plugin. This device is necessary for communication with the alarm panel. It supports connect and disconnect actions to enable or disable communication with the alarm panel.</Label>
+			</Field>
+			<Field id="sep1" type="separator"/>
+			<Field id="ip_address" type="textfield">
+				<Label>IP Address or Hostname:</Label>
+			</Field>
+			<Field id="ip_port" type="textfield">
+				<Label>TCP/IP Port:</Label>
+			</Field>
+			<Field id="address" type="textfield" hidden="true">
+				<Label/>
+			</Field>
+		</ConfigUI>
+		<States>
+			<State id="conn_state">
+				<ValueType boolType="OnOff">Boolean</ValueType>
+				<TriggerLabel>Connection State</TriggerLabel>
+				<ControlPageLabel>Connection State</ControlPageLabel>
+			</State>
+			<State id="arm_state" readOnly="YES">
+				<ValueType>
+					<List>
+						<Option value="Disarmed">Disarmed</Option>
+						<Option value="Armed_Away">Armed Away</Option>
+						<Option value="Armed_Stay">Armed Stay</Option>
+						<Option value="Armed_Stay_Instant">Armed Stay Instant</Option>
+						<Option value="Armed_Night">Armed Night</Option>
+						<Option value="Armed_Night_Instant">Armed Night Instant</Option>
+						<Option value="Armed_Vacation">Armed Vacation</Option>
+						<Option value="Unknown">Unknown</Option>
+					</List>
+				</ValueType>
+				<TriggerLabel>Arming State</TriggerLabel>
+				<TriggerLabelPrefix>Alarm became</TriggerLabelPrefix>
+				<ControlPageLabel>Arming State</ControlPageLabel>
+				<ControlPageLabelPrefix>Alarm became</ControlPageLabelPrefix>
+			</State>
+			<State id="arm_ready" readOnly="YES">
+				<ValueType>
+					<List>
+						<Option value="Ready">Ready</Option>
+						<Option value="Not_Ready">Not Ready</Option>
+						<Option value="Armed">Armed</Option>
+					</List>
+				</ValueType>
+				<TriggerLabel>Arming Readiness</TriggerLabel>
+				<TriggerLabelPrefix>Arming readiness is</TriggerLabelPrefix>
+				<ControlPageLabel>Arming Readiness</ControlPageLabel>
+				<ControlPageLabelPrefix>Arming readiness is</ControlPageLabelPrefix>
+			</State>
+			<State id="alarm_state" readOnly="YES">
+				<ValueType>
+					<List>
+						<Option value="No_Alarm">No Alarm</Option>
+						<Option value="Entry_Delay">Entry Delay</Option>
+						<Option value="Alarm_Tripped">Alarm Tripped</Option>
+					</List>
+				</ValueType>
+				<TriggerLabel>Alarm State</TriggerLabel>
+				<TriggerLabelPrefix>Alarm is</TriggerLabelPrefix>
+				<ControlPageLabel>Alarm State</ControlPageLabel>
+				<ControlPageLabelPrefix>Alarm is</ControlPageLabelPrefix>
+			</State>
+		</States>
+		<UiDisplayStateId>arm_state</UiDisplayStateId>
+	</Device>
+	<Device type="custom" id="alarmZone">
+		<Name>Alarm Zone</Name>
+		<ConfigUI>
+			<Field id="zonelabel" type="label">
+				<Label>This device type is auto created by the plugin. One device per zone configured on the alarm panel will be created. You should not create devices of this type manually.</Label>
+			</Field>
+			<Field id="zonelabel1" type="label">
+				<Label>If you've added new zones to your alarm system use the menu item "Rescan alarm zones" to create devices for the new zones.</Label>
+			</Field>
+			<Field id="address" type="textfield" hidden="true">
+				<Label/>
+			</Field>
+			<Field id="type" type="textfield" hidden="true">
+				<Label/>
+			</Field>
+		</ConfigUI>
+		<States>
+			<State id="status" readOnly="YES">
+				<ValueType>
+					<List>
+						<Option value="Normal">Normal</Option>
+						<Option value="Trouble">Trouble</Option>
+						<Option value="Violated">Violated</Option>
+						<Option value="Unknown">Unknown</Option>
+					</List>
+				</ValueType>
+				<TriggerLabel>Zone status changed</TriggerLabel>
+				<TriggerLabelPrefix>Zone became</TriggerLabelPrefix>
+				<ControlPageLabel>Zone status</ControlPageLabel>
+				<ControlPageLabelPrefix>Zone is</ControlPageLabelPrefix>
+			</State>
+		</States>
+		<UiDisplayStateId>status</UiDisplayStateId>
+	</Device>
+	<Device type="custom" id="alarmTstat">
+		<Name>Elk Thermostat</Name>
+		<ConfigUI>
+			<Field id="tstatlabel" type="label">
+				<Label>This device type is auto created by the plugin. One device per thermostat configured on the alarm panel will be created. You should not create devices of this type manually.</Label>
+			</Field>
+			<Field id="tstatlabel1" type="label">
+				<Label>If you've added new thermostats to your alarm system use the menu item "Rescan thermostats" to create devices for the new ones.</Label>
+			</Field>
+			<Field id="address" type="textfield" hidden="true">
+				<Label/>
+			</Field>
+		</ConfigUI>
+		<States>
+			<State id="mode">
+				<ValueType>
+					<List>
+						<Option value="Off">Off</Option>
+						<Option value="Heat">Heat</Option>
+						<Option value="Cool">Cool</Option>
+						<Option value="Auto">Auto</Option>
+						<Option value="Emer-Heat">Emergency Heat</Option>
+						<Option value="Unknown">Unknown</Option>
+					</List>
+				</ValueType>
+				<TriggerLabel>Thermostat mode changed</TriggerLabel>
+				<TriggerLabelPrefix>Thermostat mode became</TriggerLabelPrefix>
+				<ControlPageLabel>Thermostat mode</ControlPageLabel>
+				<ControlPageLabelPrefix>Thermostat mode is</ControlPageLabelPrefix>
+			</State>
+			<State id="temp_hold">
+				<ValueType boolType="TrueFalse">Boolean</ValueType>
+				<TriggerLabel>Temperature hold</TriggerLabel>
+				<ControlPageLabel>Temperature hold</ControlPageLabel>
+			</State>
+			<State id="fan_mode">
+				<ValueType>
+					<List>
+						<Option value="On">On</Option>
+						<Option value="Auto">Auto</Option>
+					</List>
+				</ValueType>
+				<TriggerLabel>Fan mode changed</TriggerLabel>
+				<TriggerLabelPrefix>Fan mode became</TriggerLabelPrefix>
+				<ControlPageLabel>Fan mode</ControlPageLabel>
+				<ControlPageLabelPrefix>Fan mode is</ControlPageLabelPrefix>
+			</State>
+			<State id="curr_temp">
+				<ValueType>Integer</ValueType>
+				<TriggerLabel>Temperature</TriggerLabel>
+				<ControlPageLabel>Temperature</ControlPageLabel>
+			</State>
+			<State id="heat_setpoint">
+				<ValueType>Integer</ValueType>
+				<TriggerLabel>Heat Setpoint</TriggerLabel>
+				<ControlPageLabel>Heat Setpoint</ControlPageLabel>
+			</State>
+			<State id="cool_setpoint">
+				<ValueType>Integer</ValueType>
+				<TriggerLabel>Cool Setpoint</TriggerLabel>
+				<ControlPageLabel>Cool Setpoint</ControlPageLabel>
+			</State>
+		</States>
+		<UiDisplayStateId>mode</UiDisplayStateId>
+	</Device>
+</Devices>

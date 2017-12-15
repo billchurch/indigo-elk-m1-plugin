@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<Actions>
+	<Action id="arm" deviceFilter="self.alarmPanel">
+		<Name>Arm or disarm alarm</Name>
+		<CallbackMethod>setArming</CallbackMethod>
+		<ConfigUI>
+			<Field id="arm" type="label">
+				<Label>Choose an arming state, armed stay, armed away, disarmed etc. and enter your arm/disarm code if not saved at the plugin level.</Label>
+			</Field>
+			<Field id="sep" type="separator"/>
+			<Field type="menu" id="armType">
+				<Label>Arming mode: </Label>
+				<List>
+					<Option value="disarm">Disarm - a0</Option>
+					<Option value="armAway">Arm Away - a1</Option>
+					<Option value="armStay">Arm Stay - a2</Option>
+					<Option value="armStayInstant">Arm Stay Instant - a3</Option>
+					<Option value="armNight">Arm Night - a4</Option>
+					<Option value="armNightInstant">Arm Night Instant - a5</Option>
+					<Option value="armVacation">Arm Vacation - a6</Option>
+				</List>
+			</Field>
+			<Field id="armCodeInfo" type="label">
+				<Label>If the alarm code is not specified at the plugin level it must be entered here to arm or disarm.</Label>
+			</Field>
+			<Field id="armCode" type="textfield">
+				<Label>Enter alarm code: </Label>
+			</Field>
+		</ConfigUI>
+	</Action>
+	<Action id="changeMode" deviceFilter="self.alarmTstat">
+		<Name>Set thermostat mode</Name>
+		<CallbackMethod>setThermo</CallbackMethod>
+		<ConfigUI>
+			<Field id="modeChoice" type="menu">
+				<Label>Choose mode: </Label>
+				<List>
+					<Option value="heat">Heat</Option>
+					<Option value="cool">Cool</Option>
+					<Option value="auto">Auto</Option>
+					<Option value="off">Off</Option>
+				</List>
+			</Field>
+		</ConfigUI>
+	</Action>
+	<Action id="changeFan" deviceFilter="self.alarmTstat">
+		<Name>Set fan mode</Name>
+		<CallbackMethod>setThermo</CallbackMethod>
+		<ConfigUI>
+			<Field id="fanMode" type="menu">
+				<Label>Choose mode: </Label>
+				<List>
+					<Option value="on">On</Option>
+					<Option value="auto">Auto</Option>
+				</List>
+			</Field>
+		</ConfigUI>
+	</Action>
+	<Action id="changeHold" deviceFilter="self.alarmTstat">
+		<Name>Set hold mode</Name>
+		<CallbackMethod>setThermo</CallbackMethod>
+		<ConfigUI>
+			<Field id="holdMode" type="menu">
+				<Label>Choose mode: </Label>
+				<List>
+					<Option value="on">On</Option>
+					<Option value="off">Off</Option>
+				</List>
+			</Field>
+		</ConfigUI>
+	</Action>
+	<Action id="changeHeat" deviceFilter="self.alarmTstat">
+		<Name>Set heat setpoint</Name>
+		<CallbackMethod>setThermo</CallbackMethod>
+		<ConfigUI>
+			<Field id="heatTemp" type="textfield">
+				<Label>Set temperature: </Label>
+			</Field>
+		</ConfigUI>
+	</Action>
+	<Action id="changeCool" deviceFilter="self.alarmTstat">
+		<Name>Set cool setpoint</Name>
+		<CallbackMethod>setThermo</CallbackMethod>
+		<ConfigUI>
+			<Field id="coolTemp" type="textfield">
+				<Label>Set temperature: </Label>
+			</Field>
+		</ConfigUI>
+	</Action>
+	
+</Actions>

@@ -1,0 +1,68 @@
+#! /usr/bin/env python
+
+####################
+# Copyright (c) 2011, Jeremy Carey All rights reserved.
+# http://put website here
+# ELK plugin for Indigo 5
+
+import os
+import sys
+import time
+import xml.dom.minidom
+
+
+# Note the "indigo" module is automatically imported and made available inside
+# our global name space by the host process.
+
+################################################################################
+class Plugin(indigo.PluginBase):
+	########################################
+	def __init__(self, pluginId, pluginDisplayName, pluginVersion, pluginPrefs):
+		indigo.PluginBase.__init__(self, pluginId, pluginDisplayName, pluginVersion, pluginPrefs)
+
+	def __del__(self):
+		indigo.PluginBase.__del__(self)
+
+	########################################
+	def startup(self):
+		pass
+
+	def shutdown(self):
+		pass
+		
+	def runConcurrentThread(self):
+		# When we have a catastrophic error in a device thread such that it can't continue
+		# processing (most likely a bug since connection related errors are caught and the thread
+		# goes into retry mode), we need to throw an error into the event log (one is already there
+		# with a stack trace hopefully but here's another just in case) and we disable the device
+		# so that things don't get into an unknown state. The state of the device will be set to
+		# "error"
+		try:
+			while True:
+				self.sleep(1)
+		except self.StopThread:
+			pass
+
+	def clickedOK(self,a,b,c):
+#		atype = type(a)
+#		btype = type(b)
+#		ctype = type(c)
+		indigo.server.log(repr(a))
+		indigo.server.log(repr(b))
+		indigo.server.log(repr(c))
+		
+	def turnOn(self,pluginAction):
+		indigo.server.log("on")
+		indigo.server.log(repr(pluginAction))
+		if pluginAction.deviceId == 0:
+			return
+		dev = indigo.devices[pluginAction.deviceId]
+		indigo.server.log(repr(dev))
+
+	def turnOff(self,pluginAction):
+		indigo.server.log("off")
+		indigo.server.log(repr(pluginAction))
+		if pluginAction.deviceId == 0:
+			return
+		dev = indigo.devices[pluginAction.deviceId]
+		indigo.server.log(repr(dev))

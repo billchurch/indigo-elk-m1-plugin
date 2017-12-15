@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<MenuItems>
+    <MenuItem id="connAlarm">
+        <Name>Connect to Alarm</Name>
+        <CallbackMethod>connPanel</CallbackMethod>
+    </MenuItem>
+    <MenuItem id="disconnAlarm">
+        <Name>Disconnect from Alarm</Name>
+        <CallbackMethod>disconnPanel</CallbackMethod>
+    </MenuItem>
+    <MenuItem id="scanZones">
+        <Name>Scan Alarm Zones</Name>
+        <CallbackMethod>sendZoneCmds</CallbackMethod>
+    </MenuItem>
+    <MenuItem id="scanThermostats">
+        <Name>Scan Thermostats</Name>
+        <CallbackMethod>sendThermoCmds</CallbackMethod>
+    </MenuItem>
+</MenuItems>
