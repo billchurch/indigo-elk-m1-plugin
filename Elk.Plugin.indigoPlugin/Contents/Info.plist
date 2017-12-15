@@ -5,20 +5,20 @@
 	<key>PluginVersion</key>
 	<string>2.0.0</string>
 	<key>ServerApiVersion</key>
-	<string>1.0.0</string>
-	<key>IwsApiVersion</key>
-	<string>1.0.0</string>
+	<string>1.9.0</string>
 	<key>CFBundleDisplayName</key>
 	<string>ELK M1G Control</string>
+	<key>CFBundleName</key>
+	<string>Elk M1G Control</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.elkplug.indigoplugin.elkm1g</string>
+	<string>me.billchurch.indigoplugin.elkm1g</string>
 	<key>CFBundleVersion</key>
 	<string>1.0.0</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleURLName</key>
-			<string>https://github.com/billchurch/indigo-elk-m1-plugin/string>
+			<string>https://github.com/billchurch/indigo-elk-m1-plugin</string>
 		</dict>
 	</array>
 </dict>

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <PluginConfig>
-	<SupportURL>http://www.jeremycarey.net/elkplug</SupportURL>
+	<SupportURL>https://github.com/billchurch/indigo-elk-m1-plugin/issues</SupportURL>
 	<Field id="toplabel" type="label">
 		<Label>Configure your plugin settings. Click checkboxes below to enable/disable features.</Label>
 	</Field>
@@ -8,48 +8,48 @@
 		<Label>You can hover your mouse over an option to get more info about it.</Label>
 	</Field>
 	<Field id="sep1" type="separator"/>
-	<Field id="deviceFolder" type="checkbox" defaultValue="true" tooltip="Creates a folder named 'ELK M1' that all plugin created devices will be stored in.">
-		<Label>Create "ELK M1" device folder: </Label>
+	<Field defaultValue="true" id="deviceFolder" tooltip="Creates a folder named 'ELK M1' that all plugin created devices will be stored in." type="checkbox">
+		<Label>Create &quot;ELK M1&quot; device folder: </Label>
 	</Field>
-	<Field id="autoPanel" type="checkbox" defaultValue="false" tooltip="Should the plugin automatically create the Alarm Panel device?">
-		<Label>Create "Alarm Panel" device: </Label>
+	<Field defaultValue="false" id="autoPanel" tooltip="Should the plugin automatically create the Alarm Panel device?" type="checkbox">
+		<Label>Create &quot;Alarm Panel&quot; device: </Label>
 	</Field>
-	<Field id="ip_address" type="textfield" visibleBindingId="autoPanel" visibleBindingValue="true" tooltip="Only enabled if auto creation of Alarm Panel device is enabled.">
+	<Field id="ip_address" tooltip="Only enabled if auto creation of Alarm Panel device is enabled." type="textfield" visibleBindingId="autoPanel" visibleBindingValue="true">
 		<Label>IP Address or Hostname:</Label>
 	</Field>
-	<Field id="ip_port" type="textfield" visibleBindingId="autoPanel" visibleBindingValue="true" tooltip="Only enabled if auto creation of Alarm Panel device is enabled.">
+	<Field id="ip_port" tooltip="Only enabled if auto creation of Alarm Panel device is enabled." type="textfield" visibleBindingId="autoPanel" visibleBindingValue="true">
 		<Label>TCP/IP Port:</Label>
 	</Field>
-	<Field id="startupValidate" type="checkbox" defaultValue="false" tooltip="This will poll the alarm panel for all devices of each enabled device class at plugin startup. Depending on the number of devices and classes this may take some time.">
+	<Field defaultValue="false" id="startupValidate" tooltip="This will poll the alarm panel for all devices of each enabled device class at plugin startup. Depending on the number of devices and classes this may take some time." type="checkbox">
 		<Label>Validate all devices on startup: </Label>
 	</Field>
-	<Field id="saveCode" type="checkbox" defaultValue="false" tooltip="Determines whether the plugin will store your arm/disarm code in an Indigo variable.">
+	<Field defaultValue="false" id="saveCode" tooltip="Determines whether the plugin will store your arm/disarm code in an Indigo variable." type="checkbox">
 		<Label>Save alarm code: </Label>
 	</Field>
-	<Field id="alarmCode" type="textfield" visibleBindingId="saveCode" visibleBindingValue="true" tooltip="Enabled if save alarm code is checked. Enter your arm/disarm code for your alarm panel.">
+	<Field id="alarmCode" tooltip="Enabled if save alarm code is checked. Enter your arm/disarm code for your alarm panel." type="textfield" visibleBindingId="saveCode" visibleBindingValue="true">
 		<Label>Arm/disarm code: </Label>
 	</Field>
-	<Field id="alarmZones" type="checkbox" defaultValue="true" tooltip="This enables alarm zone devices. Enabled by default.">
+	<Field defaultValue="true" id="alarmZones" tooltip="This enables alarm zone devices. Enabled by default." type="checkbox">
 		<Label>Enable alarm zones: </Label>
 	</Field>
-	<Field id="thermostats" type="checkbox" defaultValue="false" tooltip="This enables control of thermostats connected to the Elk system.">
+	<Field defaultValue="false" id="thermostats" tooltip="This enables control of thermostats connected to the Elk system." type="checkbox">
 		<Label>Enable thermostats: </Label>
 	</Field>
-	<Field id="autoNames" type="checkbox" defaultValue="true" tooltip="This updates alarm zone and thermostat device names based on ELK config. Enabled by default.">
+	<Field defaultValue="true" id="autoNames" tooltip="This updates alarm zone and thermostat device names based on ELK config. Enabled by default." type="checkbox">
 		<Label>Enable auto names: </Label>
 	</Field>
 	<Field id="sep2" type="separator"/>
-	<Field id="debug" type="checkbox" defaultValue="false" tooltip="Check to enable debug logging for the plugin. This might log a LOT of data">
+	<Field defaultValue="false" id="debug" tooltip="Check to enable debug logging for the plugin. This might log a LOT of data" type="checkbox">
 		<Label>Enable debug logging: </Label>
 	</Field>
 	<Field id="sep3" type="separator"/>
-	<Field id="subscribe" type="checkbox" defaultValue="false" tooltip="Check to enable device monitoring.  Will send commands back to the M1 from Universal Module Receiver device types.">
+	<Field defaultValue="false" id="subscribe" tooltip="Check to enable device monitoring.  Will send commands back to the M1 from Universal Module Receiver device types." type="checkbox">
 		<Label>Enable device monitoring: </Label>
 	</Field>
 	<Field id="bottomlabel" type="label">
 		<Label>Device monitoring will occur only for Universal Module Receivers.</Label>
 	</Field>
-	<Field id="configDone" type="checkbox" defaultValue="false" hidden="true">
+	<Field defaultValue="false" hidden="true" id="configDone" type="checkbox">
 		<Label>Is it configured</Label>
 	</Field>
 </PluginConfig>

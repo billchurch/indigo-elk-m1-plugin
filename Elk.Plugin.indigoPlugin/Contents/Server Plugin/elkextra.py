@@ -32,7 +32,7 @@ def createPanel(autoPanel, ip_addr, ip_port, folderId):
 					address=addr,
 					name="Alarm Panel",
 					description="ELK M1 Alarm Panel",
-					pluginId="com.elkplug.indigoplugin.elkm1g",
+					pluginId="me.billchurch.indigoplugin.elkm1g",
 					deviceTypeId="alarmPanel",
 					props={"address":addr, "ip_address":ip_addr, "ip_port":ip_port},
 					folder=folderId)
@@ -102,7 +102,7 @@ def setThermoInfo(tnum, mode, hold, tfan, temp, heat, cool, folderId):
 			address="",
 			name=tdevNm,
 			description="",
-			pluginId="com.elkplug.indigoplugin.elkm1g",
+			pluginId="me.billchurch.indigoplugin.elkm1g",
 			deviceTypeId="alarmTstat",
 			props={"address":addr},
 			folder=folderId)
@@ -140,7 +140,7 @@ def setupZones(zoneD, folderId, autoNames):
 					address="",
 					name=zdName,
 					description="",
-					pluginId="com.elkplug.indigoplugin.elkm1g",
+					pluginId="me.billchurch.indigoplugin.elkm1g",
 					deviceTypeId="alarmZone",
 					props={"address":zdAddr,"type":zone[1]},
 					folder=folderId)
