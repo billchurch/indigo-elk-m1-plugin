@@ -6,14 +6,14 @@ class Elk:
 		self.host = host
 		self.port = int(port)
 		self.timeout = int(timeout)
-		
+
 	def __del__(self):
 		self.conn.close()
-		
+
 	# Connect to alarm panel
 	def connect(self):
 		self.conn = telnetlib.Telnet(self.host, self.port)
-	
+
 	# Disconnect from alarm panel
 	def disconnect(self):
 		self.conn.close()
@@ -22,13 +22,13 @@ class Elk:
 	def readData(self):
 		self.elkMsg = self.conn.read_until("\n", self.timeout)
 		return self.elkMsg
-		
+
 	# Send command to alarm panel
 	def sendCmd(self, cmd):
 		fullCmd = cmd + self.checksum(cmd) + "\n"
 #		print "Sending: %s" % fullCmd.rstrip()
 		self.conn.write(fullCmd)
-	
+
 	# Handle arming status (AS) message
 	def armStat(self, msg):
 		sarr = msg[4:12]
@@ -68,7 +68,7 @@ class Elk:
 			zonealm = int(aarr[0:1])
 		except:
 			zonealm = 0
-			
+
 		if zonealm == 0:
 			almst = "No_Alarm"
 		elif zonealm == 1:
@@ -88,7 +88,7 @@ class Elk:
 			eeMsg = "Entry"
 		else:
 			eeMsg = "No Delay"
-			
+
 		return eeMsg
 
 	# Handle string data (SD) message
@@ -105,19 +105,19 @@ class Elk:
 		else:
 			dtype = "o"
 #			dtype = "Other"
-			
+
 		id = msg[6:9]
 		name = msg[9:25]
-		
+
 		return dtype, id, name
 
 	# Handle lighting (PC) message
 	def lights(self, msg):
-		
-		
+
+
 		zone = msg[4:7]
 		status = msg[7:9]
-			
+
 		return zone, status
 	# Handle thermostat report (TR) message
 	def thermoRpt(self, msg):
@@ -125,7 +125,7 @@ class Elk:
 		temp = msg[9:11]
 		heat = msg[11:13]
 		cool = msg[13:15]
-		
+
 		if 	msg[6:7] == '0':
 			mode = "Off"
 		elif msg[6:7] == '1':
@@ -138,17 +138,17 @@ class Elk:
 			mode = "Emer-Heat"
 		else:
 			mode = "Unknown"
-			
+
 		if msg[7:8] == '0':
 			hold = "False"
 		else:
 			hold = "True"
-			
+
 		if msg[8:9] == '0':
 			tfan = "Auto"
 		else:
 			tfan = "On"
-			
+
 		return tnum, mode, hold, tfan, temp, heat, cool
 
 	# Handle zone change (ZC) message
@@ -156,7 +156,7 @@ class Elk:
 		zone = int(msg[4:7])
 		stat = int(msg[7:8], 16)
 		zoneS = []
-		
+
 		if 0 < stat < 4:
 			status = "Normal"
 		elif 4 < stat < 8:
@@ -165,7 +165,7 @@ class Elk:
 			status = "Violated"
 		else:
 			status = "Unknown"
-		
+
 		zoneS.append((zone, status))
 		return zoneS
 
@@ -266,7 +266,7 @@ class Elk:
 					status = "Violated"
 				else:
 					status = "Unknown"
-					
+
 				useZones.append(((lctr + 1), status))
 
 		return useZones
