@@ -5,8 +5,10 @@
 # http://www.jeremycarey.net/elkplug
 # Modified by Mark Lyons in accordance with permission granted to the Indigo Community June 14, 2013
 # by Jeremy Cary.
-# ELK alarm panel plugin for Indigo 5
+# ELK alarm panel plugin for Indigo 7
 # 11/2/13 Added support for Elk-M1 bi-directional lighting control.  When devices in indigo are setup as universal receiver modules, they will send status changes to the M1.
+# 12/15/2017 Project seems abandoned by Mark Lyons / Jeremy Cary, now being maintained by Bill Church
+# https://github.com/billchurch/indigo-elk-m1-plugin
 
 
 
@@ -17,8 +19,8 @@ from elk import Elk
 
 ################################################################################
 class Plugin(indigo.PluginBase):
-	
-	
+
+
 	########################################
 	def __init__(self, pluginId, pluginDisplayName, pluginVersion, pluginPrefs):
 		indigo.PluginBase.__init__(self, pluginId, pluginDisplayName, pluginVersion, pluginPrefs)
@@ -70,7 +72,7 @@ class Plugin(indigo.PluginBase):
 	# elk startup method, main startup checks for configured flag
 	def elkstartup(self):
 		try:
-			
+
 			self.debug = self.pluginPrefs["debug"]
 			self.debugLog("Debug logging enabled.")
 			self.debugLog("Getting 'ELK M1' folder id.")
@@ -81,7 +83,7 @@ class Plugin(indigo.PluginBase):
 		except KeyError:
 			self.errorLog("Plugin not yet configured.\nPlease save the configuration then reload the plugin.\nThis should only happen the first time you run the plugin\nor if you delete the preferences file.")
 			return
-			
+
 		if self.panelId > 0:
 			self.debugLog("Creating instance of class Elk.")
 			try:
@@ -138,7 +140,7 @@ class Plugin(indigo.PluginBase):
 		if len(msg) > 0:
 			if 'XK' in msg:
 				# logging "tick" messages from M1XEP
-				
+
 				self.debugLog("Tick: %s" % msg.rstrip())
  			elif 'AS' in msg:
  				self.debugLog(msg.rstrip())
@@ -199,7 +201,7 @@ class Plugin(indigo.PluginBase):
 		self.ePanel.sendCmd("06zs00")
 		self.debugLog("Processing zone status request.")
 		self.dispatchMsg(self.ePanel.readData())
-		
+
 		self.debugLog("Updating zone descriptions.")
 		for device in indigo.devices:
 			if device.deviceTypeId == 'alarmZone':
@@ -231,7 +233,7 @@ class Plugin(indigo.PluginBase):
 				reqType = "11"
 			else:
 				reqType = "00"
-	
+
 			try:
 				if len(device.address) == 4:
 					devNr = device.address[1:]
@@ -242,7 +244,7 @@ class Plugin(indigo.PluginBase):
 			except ValueError:
 				self.debugLog("ValueError trapped. This was probably caused by incorrectly specifying a device address. Setting devNr to 208.")
 				devNr = "208"
-	
+
 			cmd = "%s%s%s00" % (cmdPrefix, reqType, devNr)
 			self.debugLog("Getting ready to send %s" % cmd)
 			self.ePanel.sendCmd(str(cmd))
@@ -261,7 +263,7 @@ class Plugin(indigo.PluginBase):
 		indigo.server.log("Disconnecting from Alarm Panel")
 		indigo.devices[self.panelId].updateStateOnServer("conn_state", "Off")
 		self.ePanel.disconnect()
-		
+
 	# send 'ts' request to set thermostat data
 	def setThermo(self, pluginAction):
 		stem = "0Bts"
@@ -365,7 +367,7 @@ class Plugin(indigo.PluginBase):
 				ipOK = True
 			else:
 				ipOK = False
-				
+
 			if valuesDict["ip_port"].isdigit():
 				portOK = True
 			else:
@@ -409,7 +411,7 @@ class Plugin(indigo.PluginBase):
 				ipOK = True
 			else:
 				ipOK = False
-				
+
 			if valuesDict["ip_port"].isdigit():
 				portOK = True
 			else:
@@ -460,10 +462,10 @@ class Plugin(indigo.PluginBase):
 				valuesDict["configDone"] = True
 				self.debugLog("Setting flag to run self.elkstartup")
 				self.runstartup = True
-			
+
 		self.debugLog("%s, %s, %s" % (str(rtn), str(ipOK), str(portOK)))
 		return rtn
-		
+
 	def deviceUpdated(self, origDev, newDev):
 		#Device changes are sent here from Indigo.
 		if (origDev.model=="Universal Module Receiver"):
@@ -481,5 +483,5 @@ class Plugin(indigo.PluginBase):
 				self.debugLog(u"Sending command to Elk-M1: " + str(devCmd))
 				self.HoldFeedback = True
 				self.ePanel.sendCmd(str(devCmd))
-			
-	
+
+

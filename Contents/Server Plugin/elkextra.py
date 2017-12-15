@@ -17,7 +17,7 @@ def createFolder(pluginFolder):
 				folderId = indigo.devices.folders["ELK M1"].id
 			else:
 				folderId = 0
-	
+
 	return folderId
 
 # create Alarm Panel device and return panelId
@@ -51,14 +51,12 @@ def setArmingStatus(arst, armrd, almst, panelId):
 # process 'PC" response and set status of the corresponding device
 def setDeviceLight(zone, lightmsg):
 	for device in indigo.devices:
-	
+
 		if device.address == zone:
 			if lightmsg == "00":
 				indigo.device.turnOff(device)
 			elif lightmsg == "01":
 				indigo.device.turnOn(device)
-			
-			
 # process 'SD' response and set description of indigo device
 def setDeviceDesc(eaddr, eid, ename, autoNames):
 	if autoNames:
@@ -70,9 +68,9 @@ def setDeviceDesc(eaddr, eid, ename, autoNames):
 			etype = "Thermostat"
 		else:
 			etype = "Other"
-	
+
 		devAddr = "%s%s" % (eaddr, eid)
-			
+
 		for device in indigo.devices:
 			if device.address == devAddr:
 				device.name = ename
