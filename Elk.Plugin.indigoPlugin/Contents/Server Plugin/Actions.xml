@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Actions>
-	<Action id="arm" deviceFilter="self.alarmPanel">
+	<Action deviceFilter="self.alarmPanel" id="arm">
 		<Name>Arm or disarm alarm</Name>
 		<CallbackMethod>setArming</CallbackMethod>
 		<ConfigUI>
@@ -8,7 +8,7 @@
 				<Label>Choose an arming state, armed stay, armed away, disarmed etc. and enter your arm/disarm code if not saved at the plugin level.</Label>
 			</Field>
 			<Field id="sep" type="separator"/>
-			<Field type="menu" id="armType">
+			<Field id="armType" type="menu">
 				<Label>Arming mode: </Label>
 				<List>
 					<Option value="disarm">Disarm - a0</Option>
@@ -28,7 +28,7 @@
 			</Field>
 		</ConfigUI>
 	</Action>
-	<Action id="changeMode" deviceFilter="self.alarmTstat">
+	<Action deviceFilter="self.alarmTstat" id="changeMode">
 		<Name>Set thermostat mode</Name>
 		<CallbackMethod>setThermo</CallbackMethod>
 		<ConfigUI>
@@ -43,7 +43,7 @@
 			</Field>
 		</ConfigUI>
 	</Action>
-	<Action id="changeFan" deviceFilter="self.alarmTstat">
+	<Action deviceFilter="self.alarmTstat" id="changeFan">
 		<Name>Set fan mode</Name>
 		<CallbackMethod>setThermo</CallbackMethod>
 		<ConfigUI>
@@ -56,7 +56,7 @@
 			</Field>
 		</ConfigUI>
 	</Action>
-	<Action id="changeHold" deviceFilter="self.alarmTstat">
+	<Action deviceFilter="self.alarmTstat" id="changeHold">
 		<Name>Set hold mode</Name>
 		<CallbackMethod>setThermo</CallbackMethod>
 		<ConfigUI>
@@ -69,7 +69,7 @@
 			</Field>
 		</ConfigUI>
 	</Action>
-	<Action id="changeHeat" deviceFilter="self.alarmTstat">
+	<Action deviceFilter="self.alarmTstat" id="changeHeat">
 		<Name>Set heat setpoint</Name>
 		<CallbackMethod>setThermo</CallbackMethod>
 		<ConfigUI>
@@ -78,7 +78,7 @@
 			</Field>
 		</ConfigUI>
 	</Action>
-	<Action id="changeCool" deviceFilter="self.alarmTstat">
+	<Action deviceFilter="self.alarmTstat" id="changeCool">
 		<Name>Set cool setpoint</Name>
 		<CallbackMethod>setThermo</CallbackMethod>
 		<ConfigUI>

@@ -6,8 +6,12 @@ npm-debug.log*
 # python files
 .pyc
 
+
+
 # Build
 Build
+build.sh
+test.sh
 
 # Editor preference files
 *.sublime-*

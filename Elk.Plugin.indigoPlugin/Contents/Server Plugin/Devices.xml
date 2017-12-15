@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Devices>
-	<Device type="custom" id="alarmPanel">
+	<Device id="alarmPanel" type="custom">
 		<Name>Alarm Panel</Name>
 		<ConfigUI>
 			<Field id="panelLabel" type="label">
@@ -13,7 +13,7 @@
 			<Field id="ip_port" type="textfield">
 				<Label>TCP/IP Port:</Label>
 			</Field>
-			<Field id="address" type="textfield" hidden="true">
+			<Field hidden="true" id="address" type="textfield">
 				<Label/>
 			</Field>
 		</ConfigUI>
@@ -70,19 +70,19 @@
 		</States>
 		<UiDisplayStateId>arm_state</UiDisplayStateId>
 	</Device>
-	<Device type="custom" id="alarmZone">
+	<Device id="alarmZone" type="custom">
 		<Name>Alarm Zone</Name>
 		<ConfigUI>
 			<Field id="zonelabel" type="label">
 				<Label>This device type is auto created by the plugin. One device per zone configured on the alarm panel will be created. You should not create devices of this type manually.</Label>
 			</Field>
 			<Field id="zonelabel1" type="label">
-				<Label>If you've added new zones to your alarm system use the menu item "Rescan alarm zones" to create devices for the new zones.</Label>
+				<Label>If you've added new zones to your alarm system use the menu item &quot;Rescan alarm zones&quot; to create devices for the new zones.</Label>
 			</Field>
-			<Field id="address" type="textfield" hidden="true">
+			<Field hidden="true" id="address" type="textfield">
 				<Label/>
 			</Field>
-			<Field id="type" type="textfield" hidden="true">
+			<Field hidden="true" id="type" type="textfield">
 				<Label/>
 			</Field>
 		</ConfigUI>
@@ -104,16 +104,16 @@
 		</States>
 		<UiDisplayStateId>status</UiDisplayStateId>
 	</Device>
-	<Device type="custom" id="alarmTstat">
+	<Device id="alarmTstat" type="custom">
 		<Name>Elk Thermostat</Name>
 		<ConfigUI>
 			<Field id="tstatlabel" type="label">
 				<Label>This device type is auto created by the plugin. One device per thermostat configured on the alarm panel will be created. You should not create devices of this type manually.</Label>
 			</Field>
 			<Field id="tstatlabel1" type="label">
-				<Label>If you've added new thermostats to your alarm system use the menu item "Rescan thermostats" to create devices for the new ones.</Label>
+				<Label>If you've added new thermostats to your alarm system use the menu item &quot;Rescan thermostats&quot; to create devices for the new ones.</Label>
 			</Field>
-			<Field id="address" type="textfield" hidden="true">
+			<Field hidden="true" id="address" type="textfield">
 				<Label/>
 			</Field>
 		</ConfigUI>
