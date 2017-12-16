@@ -25,6 +25,7 @@ This plugin will keep the device names in sync with how they're described on the
 
 ## Known issues
 Effectively this is the same code from 1.1.1 with some minor alterations. Functionality at this point is essentially the same.
+- As with the versions prior, this requires use of the "non-secure port" which is usually tcp/2101
 
 ## Origins
 This is originally the work of Jeremy Cary and Mark Lyons and as the plugin has been considered abandoned it's been picked up by Bill Church as of 20171214 and is maintained at https://github.com/billchurch/indigo-elk-m1-plugin.
