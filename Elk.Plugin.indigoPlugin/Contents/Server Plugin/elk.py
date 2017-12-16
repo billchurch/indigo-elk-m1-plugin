@@ -1,7 +1,9 @@
 import telnetlib
 import time
 
+
 class Elk:
+
     def __init__(self, host, port, timeout):
         self.host = host
         self.port = int(port)
@@ -72,21 +74,31 @@ class Elk:
             almst = "Entry_Delay"
         else:
             almst = "Alarm_Tripped"
-
         return arst, armrd, almst
 
     # Handle enter exit delay state (EE) message
     def eeStat(self, msg):
         eeType = msg[5:6]
-
         if eeType == '0':
             eeMsg = "Exit"
         elif eeType == '1':
             eeMsg = "Entry"
         else:
             eeMsg = "No Delay"
-
         return eeMsg
+
+    # Handle remote programming (RP) messages
+    def rpStat(self, msg):
+        rpType = msg[4:10]
+        if rpType == '000036':
+            rpMsg = "ELKRP disconnected broadcast"
+        elif rpType == '010035':
+            rpMsg = "ELKRP is connected, poll reply"
+        elif rpType == '020034':
+            rpMsg = "M1XEP is initializing after powerup or reboot"
+        else:
+            rpMsg = "Unknown RP message: " + msg[4:10]
+        return rpMsg
 
     # Handle string data (SD) message
     def stringData(self, msg):
@@ -102,17 +114,14 @@ class Elk:
         else:
             dtype = "o"
 #			dtype = "Other"
-
         id = msg[6:9]
         name = msg[9:25]
         return dtype, id, name
 
     # Handle lighting (PC) message
     def lights(self, msg):
-
         zone = msg[4:7]
         status = msg[7:9]
-
         return zone, status
 
     # Handle thermostat report (TR) message

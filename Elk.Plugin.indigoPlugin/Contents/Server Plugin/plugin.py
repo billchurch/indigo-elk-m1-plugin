@@ -20,8 +20,10 @@ from elk import Elk
 
 ##########################################################################
 
+
 class Plugin(indigo.PluginBase):
     ########################################
+
     def __init__(self, pluginId, pluginDisplayName, pluginVersion, pluginPrefs):
         indigo.PluginBase.__init__(
             self, pluginId, pluginDisplayName, pluginVersion, pluginPrefs)
@@ -166,6 +168,11 @@ class Plugin(indigo.PluginBase):
                     self.debugLog(zone)
                     elkextra.setDeviceLight(zone, lightmsg)
                 self.HoldFeedback = False
+            elif 'RP' in msg:
+                self.debugLog('Remote Programming')
+                self.debugLog(msg.rstrip())
+                rpState = self.ePanel.rpStat(msg)
+                self.debugLog('Remote Programming message: ' + rpState)
             elif 'SD' in msg:
                 self.debugLog(msg.rstrip())
                 daddr, id, name = self.ePanel.stringData(msg)
@@ -401,6 +408,7 @@ class Plugin(indigo.PluginBase):
             rtn = True
         return rtn
     # plugin configuration validation
+
     def validatePrefsConfigUi(self, valuesDict):
         errDict = indigo.Dict()
         badAddr = "Please use either an IP address (i.e. 1.2.3.4) or a fully qualified host name (i.e. elk.domain.com)"
