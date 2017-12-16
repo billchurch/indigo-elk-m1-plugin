@@ -93,7 +93,7 @@ class Elk:
         if rpType == '000036':
             rpMsg = "ELKRP disconnected broadcast"
         elif rpType == '010035':
-            rpMsg = "ELKRP is connected, poll reply"
+            rpMsg = "ELKRP is connected, communication blocked"
         elif rpType == '020034':
             rpMsg = "M1XEP is initializing after powerup or reboot"
         else:
