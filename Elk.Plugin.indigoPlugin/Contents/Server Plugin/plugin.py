@@ -36,7 +36,7 @@ class Plugin(indigo.PluginBase):
         try:
             if self.pluginPrefs["configDone"]:
                 self.elkstartup()
-                self.runstartup = False
+                self.startup = False
             else:
                 self.errorLog(
                     "Plugin not configured. Delaying startup until configuration is saved")
@@ -55,9 +55,9 @@ class Plugin(indigo.PluginBase):
             while True:
                 self.sleep(.1)
                 try:
-                    if self.runstartup:
+                    if self.startup:
                         self.elkstartup()
-                        self.runstartup = False
+                        self.startup = False
                     if "On" in str(indigo.devices[self.panelId].states["conn_state"]):
                         self.dispatchMsg(self.ePanel.readData())
                     else:
@@ -460,19 +460,19 @@ class Plugin(indigo.PluginBase):
             self.debugLog("Alarm code saving disabled")
         try:
             if valuesDict["configDone"]:
-                self.runstartup = False
+                self.startup = False
             else:
                 if ipOK and portOK and rtn:
                     self.debugLog("Setting configDone to True")
                     valuesDict["configDone"] = True
                     self.debugLog("Setting flag to run self.elkstartup")
-                    self.runstartup = True
+                    self.startup = True
         except KeyError:
             if ipOK and portOK and rtn:
                 self.debugLog("Setting configDone to True")
                 valuesDict["configDone"] = True
                 self.debugLog("Setting flag to run self.elkstartup")
-                self.runstartup = True
+                self.startup = True
 
         self.debugLog("%s, %s, %s" % (str(rtn), str(ipOK), str(portOK)))
         return rtn
