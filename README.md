@@ -43,7 +43,7 @@ Anything outside the versions mentioned above have the potential for unexpected 
 - Any relevant error messages
 
 ## Donations
-If you find this plugin helpful, consider donating for future upkeep. Any amount is greatly appreciated and will help prevent this plugin from being abandoned again ;) https://paypal.me/billchurch
+If you find this plugin helpful, consider donating for future upkeep. Any amount is greatly appreciated and will help prevent this plugin from being abandoned again ;) [https://paypal.me/billchurch](https://paypal.me/billchurch)
 
 ## Origins
-This is originally the work of Jeremy Cary and Mark Lyons and as the plugin has been considered abandoned it's been picked up by Bill Church as of 20171214 and is maintained at https://github.com/billchurch/indigo-elk-m1-plugin.
+This is originally the work of Jeremy Cary and Mark Lyons and as the plugin has been considered abandoned it's been picked up by Bill Church as of 20171214 and is maintained at [https://github.com/billchurch/indigo-elk-m1-plugin](https://github.com/billchurch/indigo-elk-m1-plugin).
