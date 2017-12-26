@@ -15,6 +15,7 @@ import sys
 import time
 import socket
 import elkextra
+import pprint
 from telnetlib import select
 from elk import Elk
 
@@ -64,13 +65,19 @@ class Plugin(indigo.PluginBase):
                         pass
                 except EOFError, e:
                     self.errorLog("EOFError: %s" % e.message)
+                    self.sleep(5)
+                    self.elkstartup()
                 except AttributeError, e:
+                    pprint.pprint(e)
                     self.debugLog("AttributeError: %s" % e.message)
+                    if "conn" in e.message:
+                        self.debugLog(
+                            "Connection issue detected, sleeping for 5 sec and restarting: %s" % e.message)
+                        self.sleep(5)
+                        self.elkstartup()
                 except select.error, e:
                     self.debugLog(
                         "Disconnected while listening: %s" % e.message)
-#				except:
-#					self.errorLog("Unknown Error: %s" % sys.exc_info()[0])
         except self.StopThread:
             pass
 
@@ -208,6 +215,10 @@ class Plugin(indigo.PluginBase):
                 zoneS = self.ePanel.zoneStat(msg)
                 self.debugLog(str(zoneS))
                 elkextra.setZoneStatus(zoneS)
+            elif 'EOFError' in msg:
+                self.debugLog("COMMUNICATION WITH PANEL " + msg)
+                self.debugLog("RESTARTING")
+                self.elkstartup()
             else:
                 self.debugLog(msg.rstrip())
 

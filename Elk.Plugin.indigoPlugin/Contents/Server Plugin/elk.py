@@ -22,8 +22,11 @@ class Elk:
 
     # Read data from alarm panel
     def readData(self):
-        self.elkMsg = self.conn.read_until("\n", self.timeout)
-        return self.elkMsg
+        try:
+            self.elkMsg = self.conn.read_until("\n", self.timeout)
+            return self.elkMsg
+        except EOFError as error:
+            return ("EOFError - " + str(error))
 
     # Send command to alarm panel
     def sendCmd(self, cmd):
