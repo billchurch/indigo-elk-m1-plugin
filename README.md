@@ -27,5 +27,20 @@ This plugin will keep the device names in sync with how they're described on the
 Effectively this is the same code from 1.1.1 with some minor alterations. Functionality at this point is essentially the same.
 - As with the versions prior, this requires use of the "non-secure port" which is usually tcp/2101
 
+## System Requirements
+This plugin is developed and maintained on:
+- Indigo v7.1.1
+- macOS El Capitan 10.11.6
+- Elk M1-XEP Firmware v2.0.42, Boot v2.0.4, Hardware v1.0
+- Elk M1G Firmware v5.2.10, Boot v3.3.6, Hardware 0.13
+
+## Opening Issues
+Anything outside the versions mentioned above have the potential for unexpected results. In the event you encounter a problem, or have a question, please feel free to open an Issue with the following information:
+- Version of Indigo
+- Version of macOS
+- Version of Firmware, Boot, and Hardware for your M1-XEP
+- Version of Firmware, Boot, and Hardware for your M1 panel
+- Any relevant error messages
+
 ## Origins
 This is originally the work of Jeremy Cary and Mark Lyons and as the plugin has been considered abandoned it's been picked up by Bill Church as of 20171214 and is maintained at https://github.com/billchurch/indigo-elk-m1-plugin.
