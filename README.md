@@ -35,12 +35,15 @@ This plugin is developed and maintained on:
 - Elk M1G Firmware v5.2.10, Boot v3.3.6, Hardware 0.13
 
 ## Opening Issues
-Anything outside the versions mentioned above have the potential for unexpected results. In the event you encounter a problem, or have a question, please feel free to open an Issue with the following information:
+Anything outside the versions mentioned above have the potential for unexpected results. In the event you encounter a problem, or have a question, please feel free to [open an Issue](https://github.com/billchurch/indigo-elk-m1-plugin/issues/new) with the following information:
 - Version of Indigo
 - Version of macOS
 - Version of Firmware, Boot, and Hardware for your M1-XEP
 - Version of Firmware, Boot, and Hardware for your M1 panel
 - Any relevant error messages
+
+## Donations
+If you find this plugin helpful, consider donating for future upkeep. Any amount is greatly appreciated and will help prevent this plugin from being abandoned again ;) https://paypal.me/billchurch
 
 ## Origins
 This is originally the work of Jeremy Cary and Mark Lyons and as the plugin has been considered abandoned it's been picked up by Bill Church as of 20171214 and is maintained at https://github.com/billchurch/indigo-elk-m1-plugin.
