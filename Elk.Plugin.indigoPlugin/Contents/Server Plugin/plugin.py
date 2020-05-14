@@ -122,6 +122,20 @@ class Plugin(indigo.PluginBase):
                     "Unable to connect to alarm panel. %s" % e.message)
                 indigo.devices[self.panelId].updateStateOnServer(
                     "conn_state", "Off")
+
+        self.debugLog("Checking for temp sensor devices.")
+        reqTempData = False
+        for device in indigo.devices:
+            if indigo.devices[self.panelId].deviceTypeId == 'alarmTemp':
+                reqTempData = True
+                break
+        if (self.pluginPrefs["tempsensors"] or reqTempData) and self.pluginPrefs["startupValidate"]:
+            self.debugLog("Startup validation enabled, checking temp sensors.")
+            self.sendTempCmds()
+        else:
+            self.debugLog(
+                "Startup validation disabled, not checking temp sensors.")
+
         self.debugLog("Checking for zone devices.")
         reqZoneData = False
         for device in indigo.devices:
@@ -133,6 +147,7 @@ class Plugin(indigo.PluginBase):
             self.sendZoneCmds()
         else:
             self.debugLog("Startup validation disabled, not checking zones.")
+
         self.debugLog("Checking for thermostat devices.")
         reqThermoData = False
         for device in indigo.devices:
@@ -186,9 +201,11 @@ class Plugin(indigo.PluginBase):
                 elkextra.setDeviceDesc(
                     daddr, id, name, self.pluginPrefs["autoNames"])
             elif 'ST' in msg:
-                # ignore the ST response, it's temperature from keypads
-                # just here as a placeholder incase I want to handle it later
-                pass
+                self.debugLog(msg.rstrip())
+                group, tnum, temp = self.ePanel.tempRpt(msg);
+                self.debugLog('Temperature Status ' + group + ' ' + str(tnum) + ' ' + str(temp))
+                if int(temp) != 0:
+                    elkextra.setTempInfo(tnum, temp, self.folderId)
             elif 'TR' in msg:
                 self.debugLog(msg.rstrip())
                 tnum, mode, hold, tfan, temp, heat, cool = self.ePanel.thermoRpt(
@@ -235,6 +252,19 @@ class Plugin(indigo.PluginBase):
         self.debugLog("Updating zone descriptions.")
         for device in indigo.devices:
             if device.deviceTypeId == 'alarmZone':
+                self.readDeviceDesc(device)
+
+    # sent thermostat data request commands
+    def sendTempCmds(self):
+        self.debugLog("Sending temp request for 16 temp sensors")
+        for lctr in range(1, 17):
+            self.ePanel.sendCmd("09st0%02d00" % lctr)
+            self.debugLog("09st0%02d00" % lctr)
+            self.dispatchMsg(self.ePanel.readData())
+
+        self.debugLog("Updating temp descriptions.")
+        for device in indigo.devices:
+            if "Temp Sensor" in device.name:
                 self.readDeviceDesc(device)
 
     # sent thermostat data request commands

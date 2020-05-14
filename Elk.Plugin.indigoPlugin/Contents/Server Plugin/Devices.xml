@@ -169,4 +169,26 @@
 		</States>
 		<UiDisplayStateId>mode</UiDisplayStateId>
 	</Device>
+	<Device id="alarmTemp" type="custom">
+		<Name>Elk Temp Sensor</Name>
+		<ConfigUI>
+			<Field id="templabel" type="label">
+				<Label>This device type is auto created by the plugin. One device per thermostat configured on the alarm panel will be created. You should not create devices of this type manually.</Label>
+			</Field>
+			<Field id="templabel1" type="label">
+				<Label>If you've added new thermostats to your alarm system use the menu item &quot;Rescan thermostats&quot; to create devices for the new ones.</Label>
+			</Field>
+			<Field hidden="true" id="address" type="textfield">
+				<Label/>
+			</Field>
+		</ConfigUI>
+		<States>
+			<State id="curr_temp">
+				<ValueType>Integer</ValueType>
+				<TriggerLabel>Temperature</TriggerLabel>
+				<ControlPageLabel>Temperature</ControlPageLabel>
+			</State>
+		</States>
+		<UiDisplayStateId>curr_temp</UiDisplayStateId>
+	</Device>
 </Devices>

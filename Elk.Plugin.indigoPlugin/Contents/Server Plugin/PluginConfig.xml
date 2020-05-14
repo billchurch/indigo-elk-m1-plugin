@@ -32,6 +32,9 @@
 	<Field defaultValue="true" id="alarmZones" tooltip="This enables alarm zone devices. Enabled by default." type="checkbox">
 		<Label>Enable alarm zones: </Label>
 	</Field>
+	<Field defaultValue="false" id="tempsensors" tooltip="This enables control of temperature sensors connected to the Elk system." type="checkbox">
+		<Label>Enable temperature sensors: </Label>
+	</Field>
 	<Field defaultValue="false" id="thermostats" tooltip="This enables control of thermostats connected to the Elk system." type="checkbox">
 		<Label>Enable thermostats: </Label>
 	</Field>

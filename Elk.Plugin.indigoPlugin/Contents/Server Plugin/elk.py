@@ -127,6 +127,20 @@ class Elk:
         status = msg[7:9]
         return zone, status
 
+    # Handle temperature report (ST) message
+    def tempRpt(self, msg):
+        group = msg[4:5]
+        tnum = int(msg[5:7])
+        temp = int(msg[7:10])
+
+	if temp > 0:
+            if group == '0':
+                temp -= 60
+            elif group == '1':
+                temp -= 40
+
+        return group, tnum, temp
+
     # Handle thermostat report (TR) message
     def thermoRpt(self, msg):
         tnum = int(msg[4:6])
