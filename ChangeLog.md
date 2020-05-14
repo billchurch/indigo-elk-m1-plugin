@@ -1,4 +1,8 @@
 # Change Log
+## [2.0.3] 2020-05-14
+### Added
+- New device for temperature sensors (type 33), and sending the st / receiving the ST messages to update them.
+
 ## [2.0.2] 2017-12-15
 ### Added
 - ELKRP Connected (RP) and Installer Program Mode Exited (IE) messages
