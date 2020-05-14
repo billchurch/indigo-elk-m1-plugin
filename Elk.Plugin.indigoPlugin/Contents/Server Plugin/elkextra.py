@@ -77,6 +77,32 @@ def setDeviceDesc(eaddr, eid, ename, autoNames):
                 device.name = ename
                 device.replaceOnServer()
 
+# process 'ST' response for temperature sensors
+def setTempInfo(tnum, temp, folderId):
+    tdevNm = "Temp Sensor %s" % str(tnum)
+    addr = "z%03d" % tnum
+    existaddrs = []
+    existdevs = []
+    for device in indigo.devices:
+        if device.deviceTypeId == 'alarmTemp' or device.deviceTypeId == 'alarmZone':
+            existaddrs.append(device.address)
+            existdevs.append(device)
+
+    if addr in existaddrs:
+        for device in existdevs:
+            if addr == device.address:
+                device.updateStateOnServer("curr_temp", temp)
+    else:
+        updateDev = indigo.device.create(protocol=indigo.kProtocol.Plugin,
+                                         address="",
+                                         name=tdevNm,
+                                         description="",
+                                         pluginId="me.billchurch.indigoplugin.elkm1g",
+                                         deviceTypeId="alarmTemp",
+                                         props={"address": addr},
+                                         folder=folderId)
+        updateDev.updateStateOnServer("curr_temp", temp)
+
 # process 'TR' response for thermostats
 def setThermoInfo(tnum, mode, hold, tfan, temp, heat, cool, folderId):
     tdevNm = "Thermostat %s" % str(tnum)
@@ -117,7 +143,7 @@ def setupZones(zoneD, folderId, autoNames):
     existaddrs = []
     existdevs = []
     for device in indigo.devices:
-        if device.deviceTypeId == 'alarmZone':
+        if device.deviceTypeId == 'alarmTemp' or device.deviceTypeId == 'alarmZone':
             existaddrs.append(device.address)
             existdevs.append(device)
     for zone in zoneD:
